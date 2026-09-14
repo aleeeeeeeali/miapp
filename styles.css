@@ -39,7 +39,7 @@ body {
   align-items: center;
 }
 
-/* TARJETA DE AUTENTICACIÓN / PASOS */
+/* TARJETA DE AUTENTICACIÓN */
 .auth-card {
   background-color: var(--card-white);
   border: 1px solid var(--border-color);
@@ -203,7 +203,7 @@ input::placeholder {
   display: block;
 }
 
-/* SLIDE 3: VISTA PREVIA AVATAR */
+/* SLIDE VISTA PREVIA AVATAR */
 .avatar-preview-container {
   width: 120px;
   height: 120px;
@@ -219,7 +219,7 @@ input::placeholder {
   object-fit: cover;
 }
 
-/* SLIDE 4: TARJETA PERFIL ESTILO INSTAGRAM */
+/* SLIDE TARJETA PERFIL ESTILO INSTAGRAM */
 .profile-card {
   background-color: var(--card-white);
   border: 1px solid var(--border-color);
@@ -242,7 +242,7 @@ input::placeholder {
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #e1306c; /* Borde estilo Instagram */
+  border: 3px solid #e1306c;
   padding: 2px;
 }
 

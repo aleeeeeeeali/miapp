@@ -1,0 +1,193 @@
+:root {
+  --bg-black: #0d0f12;
+  --card-black: #161b22;
+  --sky-blue: #38bdf8;
+  --sky-blue-hover: #0284c7;
+  --text-white: #f8fafc;
+  --text-muted: #94a3b8;
+  --input-bg: #0f172a;
+  --border-color: #1e293b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* VISTAS / SLIDES */
+.slide {
+  display: none;
+  width: 100%;
+}
+
+.slide.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TARJETA DE LOGIN Y REGISTRO */
+.auth-card {
+  background-color: var(--card-black);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Pestañas para cambiar entre Login y Registro */
+.tabs {
+  display: flex;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: var(--sky-blue);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--sky-blue);
+}
+
+/* FORMULARIOS */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-white);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--sky-blue);
+}
+
+.btn-primary {
+  background-color: var(--sky-blue);
+  color: var(--bg-black);
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--sky-blue-hover);
+  color: white;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.error-msg {
+  color: #ef4444;
+  font-size: 0.85rem;
+  text-align: center;
+  display: none;
+}
+
+/* SLIDE 2: PANEL DE USUARIO (FONDO AZUL) */
+#dashboardSlide {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.dashboard-content {
+  background-color: rgba(13, 15, 18, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 500px;
+  width: 90%;
+}
+
+.dashboard-content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-content p {
+  color: #e0f2fe;
+  margin-bottom: 30px;
+}
+
+.btn-logout {
+  background-color: var(--bg-black);
+  color: var(--sky-blue);
+  border: 1px solid var(--sky-blue);
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: var(--sky-blue);
+  color: var(--bg-black);
+}

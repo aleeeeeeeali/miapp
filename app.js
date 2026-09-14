@@ -1,12 +1,10 @@
-// Referencias a los elementos del DOM
+// Referencias al DOM
 const authSlide = document.getElementById('authSlide');
-const usernameSlide = document.getElementById('usernameSlide');
 const photoSlide = document.getElementById('photoSlide');
 const profileSlide = document.getElementById('profileSlide');
 
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
-const usernameForm = document.getElementById('usernameForm');
 const photoForm = document.getElementById('photoForm');
 
 const loginTabBtn = document.getElementById('loginTabBtn');
@@ -25,10 +23,10 @@ let tempAvatarBase64 = null;
 window.addEventListener('DOMContentLoaded', () => {
   const activeUser = JSON.parse(localStorage.getItem('activeUser'));
   if (activeUser) {
-    if (!activeUser.username) {
-      cambiarSlide(usernameSlide);
-    } else {
+    if (activeUser.hasSetupPhoto) {
       mostrarPerfil(activeUser);
+    } else {
+      cambiarSlide(photoSlide);
     }
   }
 });
@@ -51,7 +49,7 @@ function mostrarTab(tab) {
 
 // Cambiar visualización de slides
 function cambiarSlide(targetSlide) {
-  [authSlide, usernameSlide, photoSlide, profileSlide].forEach(slide => {
+  [authSlide, photoSlide, profileSlide].forEach(slide => {
     slide.classList.remove('active');
   });
   targetSlide.classList.add('active');
@@ -60,23 +58,32 @@ function cambiarSlide(targetSlide) {
 // 1. REGISTRO
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  const username = document.getElementById('regUser').value.trim();
   const email = document.getElementById('regEmail').value.trim().toLowerCase();
   const password = document.getElementById('regPassword').value;
 
   const users = JSON.parse(localStorage.getItem('users')) || [];
+  
   if (users.some(u => u.email === email)) {
     alert('Este correo electrónico ya está registrado.');
     return;
   }
 
-  const newUser = { email, password, username: '', avatar: DEFAULT_AVATAR };
+  const newUser = { 
+    username, 
+    email, 
+    password, 
+    avatar: DEFAULT_AVATAR,
+    hasSetupPhoto: false 
+  };
+  
   users.push(newUser);
 
   localStorage.setItem('users', JSON.stringify(users));
   localStorage.setItem('activeUser', JSON.stringify(newUser));
 
   registerForm.reset();
-  cambiarSlide(usernameSlide);
+  cambiarSlide(photoSlide);
 });
 
 // 2. INICIO DE SESIÓN
@@ -93,26 +100,17 @@ loginForm.addEventListener('submit', (e) => {
     localStorage.setItem('activeUser', JSON.stringify(foundUser));
     loginForm.reset();
 
-    if (!foundUser.username) {
-      cambiarSlide(usernameSlide);
-    } else {
+    if (foundUser.hasSetupPhoto) {
       mostrarPerfil(foundUser);
+    } else {
+      cambiarSlide(photoSlide);
     }
   } else {
     loginError.classList.add('visible');
   }
 });
 
-// 3. GUARDAR NOMBRE DE USUARIO
-usernameForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const username = document.getElementById('usernameInput').value.trim();
-
-  actualizarUsuarioActivo({ username });
-  cambiarSlide(photoSlide);
-});
-
-// 4. PREVISUALIZAR FOTO SUBIDA
+// 3. PREVISUALIZAR FOTO SUBIDA
 photoInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (file) {
@@ -125,18 +123,18 @@ photoInput.addEventListener('change', (e) => {
   }
 });
 
-// 5. GUARDAR FOTO DE PERFIL
+// 4. GUARDAR FOTO DE PERFIL
 photoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const avatarToSave = tempAvatarBase64 || DEFAULT_AVATAR;
-  actualizarUsuarioActivo({ avatar: avatarToSave });
+  actualizarUsuarioActivo({ avatar: avatarToSave, hasSetupPhoto: true });
   
   const activeUser = JSON.parse(localStorage.getItem('activeUser'));
   mostrarPerfil(activeUser);
 });
 
 function saltarFoto() {
-  actualizarUsuarioActivo({ avatar: DEFAULT_AVATAR });
+  actualizarUsuarioActivo({ avatar: DEFAULT_AVATAR, hasSetupPhoto: true });
   const activeUser = JSON.parse(localStorage.getItem('activeUser'));
   mostrarPerfil(activeUser);
 }
@@ -161,6 +159,8 @@ function mostrarPerfil(user) {
 
 function cerrarSesion() {
   localStorage.removeItem('activeUser');
+  tempAvatarBase64 = null;
+  avatarPreview.src = DEFAULT_AVATAR;
   cambiarSlide(authSlide);
   mostrarTab('login');
 }

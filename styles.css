@@ -1,24 +1,25 @@
 :root {
-  --bg-black: #0d0f12;
-  --card-black: #161b22;
-  --sky-blue: #38bdf8;
-  --sky-blue-hover: #0284c7;
-  --text-white: #f8fafc;
-  --text-muted: #94a3b8;
-  --input-bg: #0f172a;
-  --border-color: #1e293b;
+  --bg-white: #ffffff;
+  --card-white: #ffffff;
+  --sky-blue: #0095f6; /* Azul botón oficial estilo redes */
+  --sky-blue-hover: #1877f2;
+  --text-black: #000000;
+  --text-dark: #262626;
+  --text-muted: #737373;
+  --input-bg: #faFAFA;
+  --border-color: #dbdbdb;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  background-color: var(--bg-black);
-  color: var(--text-white);
+  background-color: var(--bg-white);
+  color: var(--text-dark);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -38,22 +39,39 @@ body {
   align-items: center;
 }
 
-/* TARJETA DE LOGIN Y REGISTRO */
+/* TARJETA DE LOGIN Y REGISTRO (Estilo Instagram / TikTok) */
 .auth-card {
-  background-color: var(--card-black);
+  background-color: var(--card-white);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 40px;
-  max-width: 400px;
+  border-radius: 8px;
+  padding: 40px 30px;
+  max-width: 350px;
   width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-/* Pestañas para cambiar entre Login y Registro */
+.brand-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-black);
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+/* Pestañas */
 .tabs {
   display: flex;
   margin-bottom: 25px;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .tab-btn {
@@ -62,88 +80,87 @@ body {
   border: none;
   color: var(--text-muted);
   padding: 10px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
 }
 
 .tab-btn.active {
-  color: var(--sky-blue);
+  color: var(--text-black);
 }
 
 .tab-btn.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -1px;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--sky-blue);
+  background-color: var(--text-black);
 }
 
 /* FORMULARIOS */
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
   text-align: left;
-}
-
-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
 input {
   background-color: var(--input-bg);
   border: 1px solid var(--border-color);
-  color: var(--text-white);
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  color: var(--text-dark);
+  padding: 11px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 input:focus {
-  border-color: var(--sky-blue);
+  border-color: #a8a8a8;
+  background-color: #ffffff;
+}
+
+input::placeholder {
+  color: #8e8e8e;
 }
 
 .btn-primary {
   background-color: var(--sky-blue);
-  color: var(--bg-black);
+  color: #ffffff;
   border: none;
-  padding: 12px;
-  font-size: 1rem;
+  padding: 10px;
+  font-size: 0.9rem;
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--sky-blue-hover);
-  color: white;
 }
 
 .btn-primary:active {
-  transform: scale(0.98);
+  opacity: 0.8;
 }
 
 .error-msg {
-  color: #ef4444;
-  font-size: 0.85rem;
+  color: #ed4956;
+  font-size: 0.8rem;
   text-align: center;
   display: none;
+  margin-top: 5px;
 }
 
 /* SLIDE 2: PANEL DE USUARIO (FONDO AZUL) */
@@ -156,17 +173,18 @@ input:focus {
 }
 
 .dashboard-content {
-  background-color: rgba(13, 15, 18, 0.4);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
   padding: 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 500px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 450px;
   width: 90%;
+  color: #ffffff;
 }
 
 .dashboard-content h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 10px;
 }
 
@@ -176,11 +194,11 @@ input:focus {
 }
 
 .btn-logout {
-  background-color: var(--bg-black);
-  color: var(--sky-blue);
-  border: 1px solid var(--sky-blue);
+  background-color: #ffffff;
+  color: #0284c7;
+  border: none;
   padding: 12px 24px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
@@ -188,6 +206,5 @@ input:focus {
 }
 
 .btn-logout:hover {
-  background-color: var(--sky-blue);
-  color: var(--bg-black);
+  background-color: #f0f9ff;
 }

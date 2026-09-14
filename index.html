@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Aplicación Web</title>
+  <title>Mi Aplicación</title>
   <!-- Fuentes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Archivo de Estilos CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -15,41 +15,40 @@
   <div class="slide active" id="authSlide">
     <div class="auth-card">
       
+      <!-- Logo / Título estilo Red Social -->
+      <h1 class="brand-title">MiApp</h1>
+      <p class="brand-subtitle">Regístrate para ver fotos y videos de tus amigos.</p>
+
       <!-- Pestañas -->
       <div class="tabs">
-        <button class="tab-btn active" id="loginTabBtn" onclick="mostrarTab('login')">Iniciar Sesión</button>
+        <button class="tab-btn active" id="loginTabBtn" onclick="mostrarTab('login')">Iniciar sesión</button>
         <button class="tab-btn" id="registerTabBtn" onclick="mostrarTab('register')">Registrarse</button>
       </div>
 
       <!-- Formulario de Iniciar Sesión -->
       <form id="loginForm">
         <div class="form-group">
-          <label for="loginEmail">Correo Electrónico</label>
-          <input type="email" id="loginEmail" required placeholder="correo@ejemplo.com">
+          <input type="email" id="loginEmail" required placeholder="Correo electrónico">
         </div>
         <div class="form-group">
-          <label for="loginPassword">Contraseña</label>
-          <input type="password" id="loginPassword" required placeholder="••••••••">
+          <input type="password" id="loginPassword" required placeholder="Contraseña">
         </div>
         <span class="error-msg" id="loginError">Usuario o contraseña incorrectos.</span>
-        <button type="submit" class="btn-primary">Entrar</button>
+        <button type="submit" class="btn-primary">Iniciar sesión</button>
       </form>
 
       <!-- Formulario de Registro -->
       <form id="registerForm" style="display: none;">
         <div class="form-group">
-          <label for="regUser">Nombre de Usuario</label>
-          <input type="text" id="regUser" required placeholder="Tu nombre o apodo">
+          <input type="text" id="regUser" required placeholder="Nombre de usuario">
         </div>
         <div class="form-group">
-          <label for="regEmail">Correo Electrónico</label>
-          <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
+          <input type="email" id="regEmail" required placeholder="Correo electrónico">
         </div>
         <div class="form-group">
-          <label for="regPassword">Contraseña</label>
-          <input type="password" id="regPassword" required placeholder="••••••••">
+          <input type="password" id="regPassword" required placeholder="Contraseña">
         </div>
-        <button type="submit" class="btn-primary">Crear Cuenta</button>
+        <button type="submit" class="btn-primary">Registrarte</button>
       </form>
 
     </div>
@@ -59,9 +58,9 @@
   <div class="slide" id="dashboardSlide">
     <div class="dashboard-content">
       <h1>¡Bienvenido/a, <span id="userNameDisplay">Usuario</span>!</h1>
-      <p>Has iniciado sesión correctamente. Esta es la nueva Slide de fondo azul.</p>
+      <p>Has iniciado sesión correctamente.</p>
       
-      <button class="btn-logout" onclick="cerrarSesion()">Cerrar Sesión</button>
+      <button class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
   </div>
 

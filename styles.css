@@ -1,7 +1,7 @@
 :root {
   --bg-white: #ffffff;
   --card-white: #ffffff;
-  --sky-blue: #0095f6; /* Azul botón oficial estilo redes */
+  --sky-blue: #0095f6;
   --sky-blue-hover: #1877f2;
   --text-black: #000000;
   --text-dark: #262626;
@@ -26,7 +26,7 @@ body {
   align-items: center;
 }
 
-/* VISTAS / SLIDES */
+/* SLIDES */
 .slide {
   display: none;
   width: 100%;
@@ -39,7 +39,7 @@ body {
   align-items: center;
 }
 
-/* TARJETA DE LOGIN Y REGISTRO (Estilo Instagram / TikTok) */
+/* TARJETA DE AUTENTICACIÓN / PASOS */
 .auth-card {
   background-color: var(--card-white);
   border: 1px solid var(--border-color);
@@ -57,6 +57,13 @@ body {
   color: var(--text-black);
   margin-bottom: 10px;
   letter-spacing: -0.5px;
+}
+
+.slide-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-black);
 }
 
 .brand-subtitle {
@@ -101,11 +108,15 @@ body {
   background-color: var(--text-black);
 }
 
-/* FORMULARIOS */
+/* FORMULARIOS E INPUTS */
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+}
+
+form.hidden {
+  display: none !important;
 }
 
 .form-group {
@@ -134,6 +145,11 @@ input::placeholder {
   color: #8e8e8e;
 }
 
+.hidden-file-input {
+  display: none;
+}
+
+/* BOTONES */
 .btn-primary {
   background-color: var(--sky-blue);
   color: #ffffff;
@@ -143,7 +159,6 @@ input::placeholder {
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
   transition: background-color 0.2s ease;
 }
 
@@ -151,8 +166,30 @@ input::placeholder {
   background-color: var(--sky-blue-hover);
 }
 
-.btn-primary:active {
-  opacity: 0.8;
+.btn-secondary {
+  background-color: #efefef;
+  color: var(--text-black);
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--sky-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 .error-msg {
@@ -160,51 +197,89 @@ input::placeholder {
   font-size: 0.8rem;
   text-align: center;
   display: none;
-  margin-top: 5px;
 }
 
-/* SLIDE 2: PANEL DE USUARIO (FONDO AZUL) */
-#dashboardSlide {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+.error-msg.visible {
+  display: block;
+}
+
+/* SLIDE 3: VISTA PREVIA AVATAR */
+.avatar-preview-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+}
+
+.avatar-preview-container img {
   width: 100%;
-  text-align: center;
-  padding: 20px;
+  height: 100%;
+  object-fit: cover;
 }
 
-.dashboard-content {
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  padding: 40px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+/* SLIDE 4: TARJETA PERFIL ESTILO INSTAGRAM */
+.profile-card {
+  background-color: var(--card-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
   max-width: 450px;
   width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.profile-avatar-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e1306c; /* Borde estilo Instagram */
+  padding: 2px;
+}
+
+.profile-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-black);
+  margin-bottom: 8px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+.btn-logout-danger {
+  width: 100%;
+  background-color: #ed4956;
   color: #ffffff;
-}
-
-.dashboard-content h1 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-
-.dashboard-content p {
-  color: #e0f2fe;
-  margin-bottom: 30px;
-}
-
-.btn-logout {
-  background-color: #ffffff;
-  color: #0284c7;
   border: none;
-  padding: 12px 24px;
+  padding: 10px;
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
-.btn-logout:hover {
-  background-color: #f0f9ff;
+.btn-logout-danger:hover {
+  opacity: 0.9;
 }

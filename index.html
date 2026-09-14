@@ -14,15 +14,12 @@
   <!-- ==================== SLIDE 1: AUTENTICACIÓN ==================== -->
   <div class="slide active" id="authSlide">
     <div class="auth-card">
-      
-      <!-- Logo / Título estilo Red Social -->
       <h1 class="brand-title">MiApp</h1>
       <p class="brand-subtitle">Regístrate para ver fotos y videos de tus amigos.</p>
 
-      <!-- Pestañas -->
       <div class="tabs">
-        <button class="tab-btn active" id="loginTabBtn" onclick="mostrarTab('login')">Iniciar sesión</button>
-        <button class="tab-btn" id="registerTabBtn" onclick="mostrarTab('register')">Registrarse</button>
+        <button type="button" class="tab-btn active" id="loginTabBtn" onclick="mostrarTab('login')">Iniciar sesión</button>
+        <button type="button" class="tab-btn" id="registerTabBtn" onclick="mostrarTab('register')">Registrarse</button>
       </div>
 
       <!-- Formulario de Iniciar Sesión -->
@@ -38,10 +35,7 @@
       </form>
 
       <!-- Formulario de Registro -->
-      <form id="registerForm" style="display: none;">
-        <div class="form-group">
-          <input type="text" id="regUser" required placeholder="Nombre de usuario">
-        </div>
+      <form id="registerForm" class="hidden">
         <div class="form-group">
           <input type="email" id="regEmail" required placeholder="Correo electrónico">
         </div>
@@ -50,17 +44,62 @@
         </div>
         <button type="submit" class="btn-primary">Registrarte</button>
       </form>
-
     </div>
   </div>
 
-  <!-- ==================== SLIDE 2: PANEL (AZUL) ==================== -->
-  <div class="slide" id="dashboardSlide">
-    <div class="dashboard-content">
-      <h1>¡Bienvenido/a, <span id="userNameDisplay">Usuario</span>!</h1>
-      <p>Has iniciado sesión correctamente.</p>
+  <!-- ==================== SLIDE 2: NOMBRE DE USUARIO ==================== -->
+  <div class="slide" id="usernameSlide">
+    <div class="auth-card">
+      <h2 class="slide-title">Elige tu nombre de usuario</h2>
+      <p class="brand-subtitle">Añade tu nombre para que tus amigos te reconozcan.</p>
       
-      <button class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
+      <form id="usernameForm">
+        <div class="form-group">
+          <input type="text" id="usernameInput" required placeholder="Nombre de usuario">
+        </div>
+        <button type="submit" class="btn-primary">Siguiente</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 3: SUBIR FOTO DE PERFIL ==================== -->
+  <div class="slide" id="photoSlide">
+    <div class="auth-card">
+      <h2 class="slide-title">Añade una foto de perfil</h2>
+      <p class="brand-subtitle">Sube una foto para personalizar tu cuenta.</p>
+
+      <div class="avatar-preview-container">
+        <img id="avatarPreview" src="https://via.placeholder.com/150" alt="Vista previa de perfil">
+      </div>
+
+      <form id="photoForm">
+        <label for="photoInput" class="btn-secondary">Seleccionar foto</label>
+        <input type="file" id="photoInput" accept="image/*" class="hidden-file-input">
+        
+        <button type="submit" class="btn-primary">Guardar y continuar</button>
+        <button type="button" class="btn-link" onclick="saltarFoto()">Omitir por ahora</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 4: PERFIL ESTILO INSTAGRAM ==================== -->
+  <div class="slide" id="profileSlide">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-wrapper">
+          <img id="profileAvatar" src="https://via.placeholder.com/150" alt="Foto de perfil">
+        </div>
+        <div class="profile-info">
+          <h2 id="profileUsername">@usuario</h2>
+          <div class="profile-stats">
+            <span><strong>0</strong> publicaciones</span>
+            <span><strong>0</strong> seguidores</span>
+            <span><strong>0</strong> seguidos</span>
+          </div>
+        </div>
+      </div>
+      
+      <button type="button" class="btn-logout-danger" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
   </div>
 
